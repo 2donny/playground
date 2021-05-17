@@ -1,9 +1,0 @@
-node_modules
-.DS_Store
-.env
-
-/final
-/.history
-/LICENSE
-/.gitignore
-/README.md
