@@ -26,20 +26,20 @@ class LaunchAPI extends RESTDataSource {
     };
   }
 
-  async getAllLaunches() {
-    const response = this.get('launches');
-    return Array.isArray(response) ?
-      response.map((launch) => this.launchReducer(launch)) :
-      [];
+  willSendRequest() {
+    console.log('API request sended!!')
   }
 
-  async getLaunchById({
-    launchId
-  }) {
-    const response = await this.get('launchs', {
-      flight_number: launchId,
-    });
-    return this.launch(response[0]);
+  async getAllLaunches() {
+    const response = await this.get('launches');
+    return Array.isArray(response) ?
+      response.map((launch) => this.launchReducer(launch)) 
+      : [];
+  }
+
+  async getLaunchById({ launchId }) {
+    const response = await this.get('launches', { flight_number: launchId });
+    return this.launchReducer(response[0]);
   }
 
   getLaunchesByIds({
